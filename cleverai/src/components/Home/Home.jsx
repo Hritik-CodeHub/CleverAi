@@ -1,8 +1,8 @@
 import React from "react";
-import Navbar from "../Navbar"; // Import the Navbar component
 import  "./css/Home.css";;  // Import CSS file
+import Navbar from '../navbar/Navbar';
 import Overview from "./Overview";
-import Footer from "../Footer";
+import Footer from "../footer/Footer";
 import AboutUs from "./AboutUs";
 import ContactUs from "./ContactUs";
 
@@ -10,7 +10,15 @@ const Home = () => {
   return (
     <>
       <div className="home-container">
-        <Navbar /> 
+        <Navbar 
+          linkText1="Home"
+          linkText2="Features"
+          linkText3="About Us"
+          link1="/"
+          link2="/features"
+          link3="about-us"
+          btn="Log In / Sign Up"
+        /> 
 
         {/* Hero Section */}
         <div className="hero">
