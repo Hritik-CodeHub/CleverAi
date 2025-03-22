@@ -1,0 +1,86 @@
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 15px;
+    background: rgba(0, 0, 0, 0.4);
+    position: fixed;
+    width: 100%;
+    height: 65px;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+    
+  }
+  
+  .logo-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 18px;
+  }
+  
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+  }
+  
+  .nav-links a {
+    text-decoration: none;
+    font-size: 18px;
+    color: white;
+    font-weight: 500;
+    transition: 0.3s;
+  }
+  
+  .nav-links a.active,
+  .nav-links a:hover {
+    color: #ff5722;
+    border-bottom: 2px solid #ff5722;
+  }
+  
+  .signup-btn {
+    background: #ff5722;
+    color: white;
+    margin-right: 30px;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .signup-btn:hover {
+    background: #e64a19;
+  }
+  
+  /* 📌 Responsive Navbar for Mobile */
+  @media (max-width: 768px) {
+    .navbar {
+      flex-direction: column;
+      height: auto;
+      padding: 10px;
+    }
+  
+    .nav-links {
+      flex-direction: column;
+      gap: 10px;
+      padding: 10px;
+    }
+  
+    .signup-btn {
+      margin-top: 10px;
+      margin-right: 0px;
+    }
+  }
+  

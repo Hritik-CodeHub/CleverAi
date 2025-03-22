@@ -1,0 +1,13 @@
+.Overview-Container h2 {
+   text-align: center;
+   margin-top: 20px;
+   font-size: 36px;
+   color: "#333"
+   
+}
+
+.Overview-Container p {
+    text-align: center;
+    font-size: 20px;
+    margin-top: 10px;
+ }
