@@ -63,7 +63,7 @@
   .signup-btn:hover {
     background: #e64a19;
   }
-  
+
   /* 📌 Responsive Navbar for Mobile */
   @media (max-width: 768px) {
     .navbar {
@@ -71,13 +71,11 @@
       height: auto;
       padding: 10px;
     }
-  
     .nav-links {
       flex-direction: column;
       gap: 10px;
       padding: 10px;
     }
-  
     .signup-btn {
       margin-top: 10px;
       margin-right: 0px;

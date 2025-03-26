@@ -1,0 +1,16 @@
+.fornContainer{
+    height: 100%;
+    margin: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ }
+  
+ @media (max-width: 768px) {
+    .fornContainer{
+     height: 100%;
+     width: 100hv;
+     margin-left: 0;
+     margin-right: 0;
+    }
+ }

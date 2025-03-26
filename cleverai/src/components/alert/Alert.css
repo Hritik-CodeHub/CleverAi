@@ -1,0 +1,21 @@
+.alert-container {
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    background-color: #ff5722;
+    padding: 10px 0;
+  }
+  
+  .alert-message {
+    text-align: center;
+    color: rgb(255, 255, 255);
+    width: 80%;
+    font-size: 1.5rem;
+    font-weight: 200;
+    padding: 10px 0;
+  }
+  

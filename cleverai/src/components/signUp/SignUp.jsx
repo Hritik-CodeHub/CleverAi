@@ -1,9 +1,9 @@
 import { useState } from "react";
-import StudentLoginForm from "./StudentLoginForm";
-import TeacherLoginForm from "./TeacherLoginForm";
-import "./Login.css"
+import StuSignUpForm from "./StuSignUpForm";
+import TeachSignUpForm from "./TeachSignUpForm";
+import "./SignUp.css"
 import Navbar from "../navbar/Navbar";
-export default function Login() {
+export default function SignUp() {
   const [userType, setUserType] = useState("student");
   const cardStyle = {
     alignItems: "center",
@@ -70,7 +70,7 @@ export default function Login() {
           </button>
         </div>
 
-        <div>{userType === "student" ? <StudentLoginForm /> : <TeacherLoginForm />}</div>
+        <div>{userType === "student" ? <StuSignUpForm/> : <TeachSignUpForm />}</div>
       </div>
     </div>
     </>

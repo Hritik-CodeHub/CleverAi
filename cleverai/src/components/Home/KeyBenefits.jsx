@@ -1,10 +1,18 @@
 import React from "react";
 import { FaRobot, FaChartLine, FaBook, FaUserGraduate, FaCode, FaLightbulb, FaClipboardCheck, FaCogs, FaClock, FaGlobe } from "react-icons/fa";
 
-
 const BenefitCard = ({ icon: Icon, title, description }) => {
+  let styles={ 
+    border: "1px solid #ddd",
+    borderRadius: "8px",
+    padding: "30px",
+    textAlign: "center",
+    boxShadow: "2px 2px 10px rgba(0,0,0,0.1)",
+    width: "100%",
+    maxWidth: "400px",
+    margin: "0 auto" };
     return (
-        <div style={{ border: "1px solid #ddd", borderRadius: "8px", padding: "30px", textAlign: "center", boxShadow: "2px 2px 10px rgba(0,0,0,0.1)", width: "100%", maxWidth: "400px", margin: "0 auto" }}>
+        <div style={styles}>
           <Icon style={{ fontSize: "50px", color: "#007bff", marginBottom: "15px" }} />
           <h3 style={{ fontSize: "24px", fontWeight: "bold" }}>{title}</h3>
           <p style={{ color: "#555", fontSize: "16px" }}>{description}</p>
