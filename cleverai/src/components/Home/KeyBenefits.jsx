@@ -1,5 +1,5 @@
 import React from "react";
-import { FaRobot, FaChartLine, FaBook, FaUserGraduate, FaCode, FaLightbulb, FaClipboardCheck, FaCogs, FaClock, FaGlobe } from "react-icons/fa";
+import { FaRobot, FaChartLine, FaUserGraduate, FaCode, FaLightbulb, FaStar } from "react-icons/fa";
 
 const BenefitCard = ({ icon: Icon, title, description }) => {
   let styles={ 
@@ -27,7 +27,7 @@ export default function AIAssistantBenefits() {
     { icon: FaChartLine, title: "Educator Dashboard", description: "Track student progress, analyze performance trends, and optimize teaching strategies." },
     { icon: FaCode, title: "AI-Powered Code Evaluation", description: "Automatically assess programming assignments, check efficiency, and suggest improvements." },
     { icon: FaLightbulb, title: "Smart Recommendations", description: "Students receive learning material suggestions based on their strengths and weaknesses." },
-    { icon: FaClipboardCheck, title: "Seamless Integration", description: "Easily integrates with existing LMS platforms for a smooth user experience." }
+    { icon: FaStar, title: "AI-Powered Assistance", description: "Integrates Google's Gemini API for instant feedback, personalized recommendations, and enhanced user interactions." }
 ];
 
   const howItWorks = {

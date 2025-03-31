@@ -42,17 +42,7 @@ export default function SignUp() {
 
   return (
     <>
-    <Navbar 
-        //   linkText1="Home"
-        //   linkText2="Features"
-        //   linkText3="About Us"
-        //   link1="/"
-        //   link2="/features"
-        //   link3="about-us"
-          btn="Logout"
-          btnNavLink="/"
-        /> 
-
+    <Navbar/> 
     <div className="fornContainer">
       <div style={cardStyle}>
         <div style={buttonContainer}>

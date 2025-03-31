@@ -1,22 +1,67 @@
-import React from "react";
-import { Link , useNavigate} from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Link as ScrollLink } from "react-scroll";
 import "./Navbar.css";
 
-const Navbar = ({linkText1,linkText2,linkText3,link1,link2,link3,btn,btnNavLink}) => {
-  const navigate = useNavigate(); // React Router's navigation hook
+const Navbar = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isHome, setIsHome] = useState(false);
+
+  useEffect(() => {
+    setIsHome(location.pathname === "/");
+  }, [location]);
+
+  const handleLogout = () => {
+    localStorage.removeItem("authToken");
+    navigate("/");
+  };
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
     <nav className="navbar">
       <div className="logo">
         <img src="/public/logo3.0.png" alt="CleverAi Logo" className="logo-img" />
         <h3>CleverAi</h3>
       </div>
-      <ul className="nav-links">
-        <li><Link to={link1} className="active">{linkText1}</Link></li>
-        <li><Link to={link2}>{linkText2}</Link></li>
-        <li><ScrollLink to={link3} smooth={true} duration={1000}>{linkText3}</ScrollLink></li>
-      </ul>
-      <button className="signup-btn" onClick={() => navigate(btnNavLink)}>{btn}</button>
+
+      {isHome ? (
+        <>
+          <div className={`nav-links ${isMenuOpen ? "active" : ""}`}>
+            <ul>
+              <li><Link to="/" className="active">Home</Link></li>
+              <li><Link to="/features">Features</Link></li>
+              <li><ScrollLink to="about-us" smooth={true} duration={1000}>About Us</ScrollLink></li>
+            </ul>
+            <button className="signup-btn mobile" onClick={() => navigate("/login")}>
+              Sign Up / Login
+            </button>
+          </div>
+          <button className="signup-btn desktop" onClick={() => navigate("/login")}>
+            Sign Up / Login
+          </button>
+        </>
+      ) : location.pathname === "/signup" || location.pathname === "/login" ? (
+        <button className="logout-btn" onClick={() => navigate("/")}>
+          Back
+        </button>
+      ) : (
+        <button className="logout-btn" onClick={handleLogout}>
+          Logout
+        </button>
+      )}
+
+      {isHome && (
+        <div className="hamburger" onClick={toggleMenu}>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      )}
     </nav>
   );
 };

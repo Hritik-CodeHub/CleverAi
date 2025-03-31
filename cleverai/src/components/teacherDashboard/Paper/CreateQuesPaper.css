@@ -1,7 +1,6 @@
 .question-paper-container {
-    max-width: 800px;
+    max-width: 900px;
     margin: 100px auto;
-
     padding: 20px;
     border-radius: 8px;
     background-color: #f9f9f9;
@@ -9,8 +8,9 @@
   }
   
   .question-paper-container h2 {
-    margin-bottom:20px ;
+    margin-bottom:8px ;
     text-align: center;
+    font-size: 32px;
     color: #333;
   }
   
@@ -24,6 +24,7 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+    font-size: 20px;
   }
   
   .question-field input {
@@ -35,7 +36,7 @@
     box-Sizing: border-box;
   }
   
-  button {
+  .submitBtn {
     background-color: #10b981;
     color: white;
     padding: 10px;
@@ -47,15 +48,11 @@
   }
   
   .submitBtn:hover {
-    background-color: #059669;;
+    background-color: #059669;
   }
   
   /* Responsive Design */
   @media (min-width: 600px) {
-    .question-field {
-      flex-direction: row;
-    }
-  
     .question-field input {
       flex: 1;
     }

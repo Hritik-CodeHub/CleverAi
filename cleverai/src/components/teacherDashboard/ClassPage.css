@@ -16,16 +16,15 @@
     box-Sizing: border-box;
     background-Color:#f8f9fa;
 }
-.newPaper{
+.create-newPaper{
   display: flex;
   width: 180px;
   height: 120px;
   flex-wrap: wrap;
   text-align: center;
-  margin-right: 20px;
   }
   
-.create-paper-button {
+.create-paper-button{
     width: 100%;
     margin-left: 8px;
     padding: 8px 12px;
@@ -40,8 +39,6 @@
     background-color:#059669;
   }
   .class-title{
-    position: absolute;
-    top: 10px;
     font-size: 32px;
     color: black;
     font-weight: bold;
@@ -86,10 +83,14 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 15px;
+    border-radius: 10px;
+    background-color: #f8f9fa;
+    padding: 15px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
   }
   
   .card {
-  background-color: #f8f9fa;;
+  background-color: #f8f9fa;
   padding: 15px;
   width: 180px;
   height: 120px;
@@ -97,7 +98,7 @@
   align-items: center;
   justify-content: center;
   border-radius: 10px;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4);
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
   cursor: pointer;
   transition: transform 0.2s, box-shadow 0.2s;
   text-align: center;
@@ -108,8 +109,8 @@
     transform: translateY(-5px);
     box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.4);
   }
+
   @media (max-width: 768px) {
-    
     .class-content {
       flex-direction: column;
       align-items: center;
@@ -124,6 +125,9 @@
         height: 80px;
         width: 100%;
     }
+    .newPaper{
+      margin-right: 0px;
+      }
     .card {
         width: 325px;
     }

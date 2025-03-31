@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate} from "react-router-dom";
-import  "./css/Home.css";
+import  "./homecss/Home.css";
 import Navbar from '../navbar/Navbar';
 import Overview from "./Overview";
 import Footer from "../footer/Footer";
@@ -12,17 +12,7 @@ const Home = () => {
   return (
     <>
       <div className="home-container">
-        <Navbar 
-          linkText1="Home"
-          linkText2="Features"
-          linkText3="About Us"
-          link1="/"
-          link2="/features"
-          link3="about-us"
-          btn="Log In / Sign Up"
-          btnNavLink="/login"
-        /> 
-
+        <Navbar/> 
         {/* Hero Section */}
         <div className="hero">
           <div className="hero-overlay"></div>

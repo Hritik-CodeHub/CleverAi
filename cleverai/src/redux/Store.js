@@ -1,8 +1,10 @@
-import { configureStore } from '@reduxjs/toolkit'
-import counterReducer from '../reduxFeatures/auth/AuthSlice'
+import { configureStore } from '@reduxjs/toolkit';
+import classInfoReducer from '../reduxFeatures/info/ClassInfoSlice';
+import questionPaperReducer from '../reduxFeatures/info/questionPaperSlice';
 
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
+    classInfo: classInfoReducer,
+    questionPaper: questionPaperReducer,
   },
 })

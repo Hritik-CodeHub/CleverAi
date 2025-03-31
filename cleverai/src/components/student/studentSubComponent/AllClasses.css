@@ -1,0 +1,118 @@
+.all-classes-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.header-span {
+  font-size: 2.5rem;
+  color: #2c3e50;
+  position: relative;
+  padding-bottom: 0.2rem;
+}
+
+.classes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  padding: 1rem 0;
+}
+
+.class-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e1e8ed;
+}
+
+.class-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+  border-color: #3498db;
+}
+
+.class-name {
+  font-size: 1.4rem;
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+.class-teacher,
+.class-students,
+.class-date {
+  color: #666;
+  margin: 0.5rem 0;
+  font-size: 0.95rem;
+}
+
+.loading-text,
+.error-text,
+.no-classes-text {
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.1rem;
+}
+
+.loading-text {
+  color: #3498db;
+}
+
+.error-text {
+  color: #e74c3c;
+}
+
+.no-classes-text {
+  color: #7f8c8d;
+}
+
+/* Remove default link styling */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .all-classes-container {
+    margin: 1rem auto;
+    padding: 0 1rem;
+  }
+
+  .header-span {
+    font-size: 2rem;
+  }
+
+  .classes-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+  }
+
+  .class-card {
+    padding: 1.2rem;
+  }
+
+  .class-name {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-span {
+    font-size: 1.8rem;
+  }
+
+  .classes-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .class-card {
+    padding: 1rem;
+  }
+}

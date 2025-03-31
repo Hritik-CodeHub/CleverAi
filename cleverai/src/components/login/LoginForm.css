@@ -1,0 +1,33 @@
+.inputStyle{
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    margin-top:20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    background-color: white;
+
+  }
+
+.buttonStyle{
+    width: 100%;
+    padding: 10px;
+    margin-top:20px;
+    background-color: #ff5722;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .buttonStyle:hover{
+    background: #e64a19;
+  }
+
+  .link{
+    color: blue;
+  }
+  .link:hover{
+    font-weight:bold;
+  }
