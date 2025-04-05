@@ -11,6 +11,7 @@ import CreateQuesPaper from "./components/teacherDashboard/Paper/CreateQuesPaper
 import QuesPaper from "./components/teacherDashboard/Paper/QuesPaper";
 import AllPaper from "./components/student/studentSubComponent/AllPaper";
 import { ToastContainer, toast } from 'react-toastify';
+import StudentRecords from "./components/teacherDashboard/StudentRecords/StudentRecord";
 const App = () => {
   return (
     <Router>
@@ -33,9 +34,10 @@ const App = () => {
         <Route path="/student" element={<StudentDashboard/>} />
         <Route path="/student/class/:classId" element={<AllPaper/>}/>
         <Route path="/features" element={<FeaturesPage/>} />
-        <Route path="/class/:className" element={<ClassPageWrapper />} />
-        <Route path="/class/:newPaper/question-paper" element={<CreateQuesPaper />} />
+        <Route path="/teacher/:className/:_id" element={<ClassPageWrapper />} />
+        <Route path="/class/:newPaper/:_id/question-paper" element={<CreateQuesPaper />} />
         <Route path="/class/:classId/:indx" element={<QuesPaper />} />
+        <Route path="/teacher/class/:_Id/:stuId" element={<StudentRecords />} />
       </Routes>
     </Router>
   );

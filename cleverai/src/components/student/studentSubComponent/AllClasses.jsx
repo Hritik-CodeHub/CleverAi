@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import './AllClasses.css';  // Importing the external CSS
 import Navbar from "../../navbar/Navbar";
+import { toast } from "react-toastify";
 export default function AllClasses() {
   const [classes, setClasses] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -33,6 +34,7 @@ export default function AllClasses() {
         }
 
         setClasses(data.classes);
+       
       } catch (err) {
         setError(err.message);
       } finally {
@@ -42,6 +44,33 @@ export default function AllClasses() {
 
     fetchClasses();
   }, []);
+  const authToken = localStorage.getItem("authToken");
+
+  const handleJoinClass = async (classId) => {
+    try {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/st/joinClass`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": authToken,
+        },
+        body: JSON.stringify({ classId }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        toast.success("You Succeffully Join the class")
+      } else {
+        alert(`Error: ${data.message}`);
+      }
+    } catch (error) {
+      console.error("Error joining class:", error);
+      alert("Failed to join class. Please try again later.");
+    }
+  };
+
+
 
   return (<>
     <Navbar/>
@@ -60,8 +89,8 @@ export default function AllClasses() {
 
       <div className="classes-grid all-classes">
         {classes.map((classItem) => (
-          <Link to={`/student/class/${classItem._id}`} key={classItem._id} >
-            <div className="class-card">
+         <div key={classItem._id}>
+            <div  className="class-card">
               <h3 className="class-name">{classItem.name}</h3>
               <p className="class-teacher">Teacher ID: {classItem.teacher}</p>
               <p className="class-students">Total Students: {classItem.students.length}</p>
@@ -69,7 +98,8 @@ export default function AllClasses() {
                 Created At: {new Date(classItem.createdAt).toLocaleDateString()}
               </p>
             </div>
-          </Link>
+          <button className="joinbtn"onClick={() => handleJoinClass(classItem._id)}>Join Class</button>
+         </div>
         ))}
       </div>
     </div>

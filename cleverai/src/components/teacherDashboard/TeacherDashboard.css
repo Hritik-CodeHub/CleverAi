@@ -1,109 +1,160 @@
-.dashboard-container {
-  padding: 20px;
-  max-width: 900px;
-  margin: 0 auto;
+.teacher-dashboard {
+  max-width: 1200px;
+  margin: 80px auto 2rem;
+  padding: 0 1.5rem;
 }
 
 .dashboard-title {
-  font-size: 32px;
-  color: black;
-  font-weight: bold;
+  color: #2c3e50;
+  font-size: 2.5rem;
   text-align: center;
-  margin-bottom: 20px;
-  z-index: 10;
+  margin-bottom: 2rem;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.header-span {
+  font-size: 2rem;
+  color: #2c3e50;
+  position: relative;
+  padding-bottom: 0.5rem;
 }
 
 .dashboard-content {
-  display: flex;
-  margin-top: 100px;
-  flex-direction: row;
-  align-items: center;
+  background: #ffffff;
+  border-radius: 15px;
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
-/* Class List Styling */
-.class-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-  padding: 0;
-}
-
-.class-item {
-  background-color: #f8f9fa;
-  padding: 15px;
-  width: 180px;
-  height: 120px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 10px;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
-  cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
-  text-align: center;
-  font-size: 18px;
-  font-weight: bold;
-}
-
-.class-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.4);
-}
-
-/* .date{
-  margin: 5px 0 0;
-  font-size: 14px;
-  color: #6c757d;
-
-  position: absolute; /* Absolute position */
-  /* left: 10px; 
-  top: 10px; 
-  margin: 0;
-} */
-/* Class Creation Styling */
-.class-creation {
-  display: flex;
-  width: 180px;
-  height: 120px;
-  flex-wrap: wrap;
-  text-align: center;
+.class-creation-card {
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid #e1e8ed;
+  box-shadow: 0 0px 6px rgba(0, 0, 0, 0.2);
 }
 
 .class-input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    margin-Top:20px;
-    border: 1px solid #ccc;
-    border-Radius: 5px;
-    box-Sizing: border-box;
-    background-Color:#f8f9fa;
-
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #e1e8ed;
+  border-radius: 8px;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  transition: border-color 0.3s ease;
 }
+
+.class-input:focus {
+  outline: none;
+  border-color: #3498db;
+}
+
 .create-class-button {
-  margin-left: 8px;
-  padding: 8px 12px;
-  background-color: #10b981;
+  width: 100%;
+  padding: 0.8rem;
+  background: #10b981;
   color: white;
-  border-radius: 5px;
   border: none;
+  border-radius: 8px;
+  font-size: 1rem;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: all 0.3s ease;
 }
 
-.create-class-button:hover {
-  background-color: #059669;
+.create-class-button:hover:not(:disabled) {
+  background: #059669;
+  
 }
 
+.create-class-button:disabled {
+  background: #bdc3c7;
+  cursor: not-allowed;
+}
+
+.class-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.classes-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 0px 6px rgba(0, 0, 0, 0.2);
+  border: 1px solid #e1e8ed;
+}
+
+.classes-card:hover , .class-creation-card:hover{
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+  border-color: #3498db;
+}
+
+.classname {
+  color: #2c3e50;
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+}
+
+.class-teacher,
+.classes-students,
+.classes-papers {
+  color: #666;
+  margin: 0.5rem 0;
+  font-size: 0.95rem;
+}
+
+/* Remove default link styling */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
-  .dashboard-content {
-    flex-direction: column;
+  .teacher-dashboard {
+    margin: 60px auto 1rem;
+    padding: 0 1rem;
   }
+
   .dashboard-title {
-    display: none;
+    font-size: 2rem;
   }
-  .class-item {
-    width: 100%;
+
+  .header-span {
+    font-size: 1.8rem;
+  }
+
+  .dashboard-content {
+    padding: 1rem;
+  }
+
+  .class-list {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-title {
+    font-size: 1.8rem;
+  }
+
+  .header-span {
+    font-size: 1.5rem;
+  }
+
+  .class-list {
+    grid-template-columns: 1fr;
+  }
+
+  .classes-card {
+    padding: 1.2rem;
   }
 }

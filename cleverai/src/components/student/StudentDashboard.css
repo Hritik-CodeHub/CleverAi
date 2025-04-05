@@ -1,23 +1,117 @@
 .student-dashboard {
-    background-color: white; /* Equivalent to bg-orange-50 */
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  min-height: 100vh;
+}
+
+.heading {
+  color: #2c3e50;
+  font-size: 2.5rem;
+  text-align: center;
+  margin: 2rem 0;
+  position: relative;
+  padding-bottom: 1rem;
+}
+
+.heading::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  background: linear-gradient(90deg, #3498db, #2ecc71);
+  border-radius: 2px;
+}
+
+.toggle-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 2rem 0;
+  flex-wrap: wrap;
+}
+
+.toggle-buttons button {
+  padding: 0.8rem 1.5rem;
+  border: 2px solid #3498db;
+  border-radius: 8px;
+  background: transparent;
+  color: #3498db;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.toggle-buttons button:hover {
+  background: rgba(52, 152, 219, 0.1);
+  transform: translateY(-2px);
+}
+
+.toggle-buttons button.active {
+  background: #3498db;
+  color: white;
+}
+
+.classes-container {
+  background: #ffffff;
+  border-radius: 15px;
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  margin-top: 2rem;
+}
+
+/* Animation for tab content */
+.classes-container > * {
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
   }
-  
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .student-dashboard {
+    padding: 1rem;
+  }
+
   .heading {
-    font-size: 3rem;
-    font-weight: bold;
-    color: #4a4a4a; /* Equivalent to text-gray-800 */
-    margin-top: 26px;
-    
+    font-size: 2rem;
+    margin: 1.5rem 0;
   }
-  
-  .classes-container {
+
+  .toggle-buttons {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .toggle-buttons button {
     width: 100%;
-    max-width: 960px; /* Equivalent to max-w-6xl */
-    padding: 1.5rem;
+    padding: 0.6rem 1rem;
   }
-  
+
+  .classes-container {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .heading {
+    font-size: 1.8rem;
+    margin-top:2.5rem ;
+  }
+
+  .toggle-buttons button {
+    font-size: 0.9rem;
+  }
+}

@@ -1,0 +1,17 @@
+.stuAttpaper-container{
+    max-width: 900px;
+    margin: 100px auto;
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.stuAttpaper-title{
+    text-align:center;
+    margin-bottom:20px;
+}
+.score-date{
+    font-size: 20px;
+}

@@ -1,57 +1,73 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate} from "react-router-dom";
 import "./CreateQuesPaper.css";
 import Navbar from "../../navbar/Navbar";
 import { useSelector, useDispatch } from "react-redux";
-import { updateQuestion, updateAnswer } from "./../../../reduxFeatures/info/questionPaperSlice";
-
+import { updateQuestion, updateAnswer,resetQuestions} from "./../../../reduxFeatures/info/questionPaperSlice";
+import { toast } from "react-toastify";
 const CreateQuesPaper = () => {
   const dispatch = useDispatch();
   const questions = useSelector((state) => state.questionPaper.questions);
   const [error, setError] = useState(null);
-  const { newPaper } = useParams(); // Extract paper title from URL
+  const { newPaper,_id} = useParams(); // Extract paper title from URL
+  const navigate = useNavigate();
   const authToken = localStorage.getItem("authTokenTeach");
-  const _id = useSelector((state) => state.classInfo.selectedClassId);
-
+  if (!authToken) {
+    setError("Authentication token is missing.");
+    navigate("/login"); 
+    return;
+  }
+  
   const handleChange = (index, value, type) => {
     if (type === "question") {
       dispatch(updateQuestion({ index, value }));  // update questions in redux store
     } else {
-      dispatch(updateAnswer({ index, value }));   // update answer in redux store
+      dispatch(updateAnswer({ index, value }));   // update e in redux store
     }
   };
-
+  
   const handleCreatePaper = async (e) => {
     e.preventDefault();
-    if (newPaper.trim()){
-      try{
-          console.log(questions);
-          console.log("Class ID:", _id);
-
-          const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/tec/createPaper`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              "auth-token": authToken,
-            },
-            body: JSON.stringify({ 
-              title: newPaper,
-              classId: _id,
-              questions:questions // Redux-stored questions
-            }),
-          });
-
-          if (!response.ok) {
-            throw new Error("Failed to create Paper");
-          }
-
-          const newPaperResponse = await response.json();
-          console.log(newPaperResponse);
-        } catch (err) {
-          setError(err.message);
-          }
+    if (!newPaper.trim()) {
+      setError("Please enter a valid question paper title.");
+      return;
+    }
+  
+    const validQuestions = questions
+      .filter(q => q.text.trim() && q.answere.trim())
+      .map(q => ({ text: q.text, answere: q.answere })); 
+  
+    if (validQuestions.length === 0) {
+      setError("Please add at least one valid question.");
+      return;
+    }
+  
+    try {
+      console.log("Final Payload:", validQuestions);
+  
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/tec/createPaper`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": authToken,
+        },
+        body: JSON.stringify({
+          title: newPaper,
+          classId: _id,
+          questions: validQuestions,  
+        }),
+      });
+  
+      if (!response.ok) throw new Error("Failed to create Paper");
+  
+      toast.success("Question paper created successfully");
+      dispatch(resetQuestions());  // Make sure `resetQuestions` exists in Redux
+      navigate(`/teacherdash`);
+    } catch (error) {
+      setError(error.message || "An error occurred while creating the paper.");
     }
   };
+  
 
   return (
     <>
@@ -67,13 +83,13 @@ const CreateQuesPaper = () => {
                 id={`ques-${index}`}
                 type="text"
                 placeholder={`Question ${index + 1}`}
-                value={q.question}
+                value={q.text}
                 onChange={(e) => handleChange(index, e.target.value, "question")}
               />
               <input
                 type="text"
                 placeholder={`Answer ${index + 1}`}
-                value={q.answer}
+                value={q.answere}
                 onChange={(e) => handleChange(index, e.target.value, "answer")}
               />
             </div>

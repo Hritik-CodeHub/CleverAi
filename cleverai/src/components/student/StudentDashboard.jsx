@@ -1,11 +1,14 @@
-import React, { useEffect } from "react";
-import AllClasses from "./studentSubComponent/AllClasses";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./StudentDashboard.css"
+import AllClasses from "./studentSubComponent/AllClasses";
+import AllEnrolledClasses from "./studentSubComponent/AllEnrolledClasses";
+import AllAttemptedPaper from "./studentSubComponent/AllAttemptedPaper";
+import "./StudentDashboard.css";
+
 function StudentDashboard() {
   const navigate = useNavigate();
-  const authToken = localStorage.getItem("authToken");
   const isAuthenticated = localStorage.getItem("isAuthenticated");
+  const [activeTab, setActiveTab] = useState("all"); // "all", "enrolled", "attempted"
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -16,8 +19,34 @@ function StudentDashboard() {
   return (
     <div className="student-dashboard">
       <h2 className="heading">Student Dashboard</h2>
+
+      {/* Toggle Buttons */}
+      <div className="toggle-buttons">
+        <button
+          className={activeTab === "all" ? "active" : ""}
+          onClick={() => setActiveTab("all")}
+        >
+          All Classes
+        </button>
+        <button
+          className={activeTab === "enrolled" ? "active" : ""}
+          onClick={() => setActiveTab("enrolled")}
+        >
+          Enrolled Classes
+        </button>
+        <button
+          className={activeTab === "attempted" ? "active" : ""}
+          onClick={() => setActiveTab("attempted")}
+        >
+          All Attempted Papers
+        </button>
+      </div>
+
+      {/* Show Content Based on Active Tab */}
       <div className="classes-container">
-        <AllClasses />
+        {activeTab === "all" && <AllClasses />}
+        {activeTab === "enrolled" && <AllEnrolledClasses />}
+        {activeTab === "attempted" && <AllAttemptedPaper />}
       </div>
     </div>
   );

@@ -57,7 +57,7 @@ function TestComponent({ classId, paper, onBack }) {
   const handleSubmit = async () => {
     setLoading(true);
     setIsRunning(false);
-
+   console.log(answers)
     const authToken = localStorage.getItem("authToken");
     if (!authToken) {
       setError("Authentication token is missing.");
@@ -73,7 +73,7 @@ function TestComponent({ classId, paper, onBack }) {
     };
 
     try {
-      const response = await fetch("http://localhost:3000/api/user/st/answeres", {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/st/answeres`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -156,6 +156,12 @@ function TestComponent({ classId, paper, onBack }) {
           className="submit-button"
         >
           {loading ? "Submitting..." : "Submit Paper"}
+        </button>
+        <button 
+          onClick={onBack}
+          className="back-button"
+        >
+          Back
         </button>
       </div>
 

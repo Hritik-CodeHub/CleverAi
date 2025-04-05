@@ -5,7 +5,7 @@ const teamMembers = [
   { name: "Prateek Maurya", role: "Software Engineer", img: "./src/assets/prateekImg.png" },
   { name: "Hritik Verma", role: "Software Engineer", img: "./src/assets/hritikImg.jpg" },
   { name: "Aman Ali", role: "Software Engineer", img: "./src/assets/amanImg.jpg" },
-  { name: "Aryan Singh", role: "Software Engineer", img: "./src/assets/aryanImg.jpg" },
+  { name: "Prem Vishwakarma", role: "Software Engineer", img: "./src/assets/premImg.jpg" },
 ];
 
 export default function AboutUs() {

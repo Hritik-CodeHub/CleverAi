@@ -35,7 +35,6 @@ export default function StudentForm() {
         navigate("/student")
       }, 3000);
       
-      console.log("Login successful", data.authToken);
       localStorage.setItem("authToken", data.authToken);
       localStorage.setItem("isAuthenticated", true);
       

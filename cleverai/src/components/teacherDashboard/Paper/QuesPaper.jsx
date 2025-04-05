@@ -10,7 +10,12 @@ const QuesPaper = () => {
   const { classId, indx } = useParams();
   const index = parseInt(indx, 10); // Convert indx to a number
   const authToken = localStorage.getItem("authTokenTeach");
-
+  if (!authToken) {
+    setError("Authentication token is missing.");
+    navigate("/login"); 
+    return;
+  }
+  
   useEffect(() => {
     const fetchPaper = async () => {
       setError(null);
@@ -51,7 +56,7 @@ const QuesPaper = () => {
         {error ? (
           <h2 className="error-message">{error}</h2>
         ) : (
-          <form>
+          <div>
             {allQues.map((q, i) => (
               <div key={i} className="question-field">
                 <p id="ques">Question {i + 1}: {q.text}</p>
@@ -59,7 +64,7 @@ const QuesPaper = () => {
                 <br />
               </div>
             ))}
-          </form>
+          </div>
         )}
       </div>
     </>

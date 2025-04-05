@@ -2,7 +2,6 @@ import React from 'react';
 import './AiResponse.css'; // Importing the external CSS
 
 function AiResponse({ aiResponse, onCancel }) {
-  console.log("aiResponse", aiResponse);
 
   return (
     <div className="ai-response-overlay">

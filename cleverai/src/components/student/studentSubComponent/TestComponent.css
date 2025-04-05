@@ -87,6 +87,7 @@
   border: 2px solid #e1e8ed;
   border-radius: 8px;
   font-size: 1rem;
+  box-Sizing: border-box;
   transition: all 0.3s ease;
 }
 

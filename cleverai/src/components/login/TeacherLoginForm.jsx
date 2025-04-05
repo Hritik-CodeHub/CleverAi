@@ -35,8 +35,6 @@ export default function TeacherForm() {
       setTimeout(() => {
         navigate("/teacherdash");
       }, 2000);
-
-      console.log("Login successful", data.authToken);
       
       // Storing the data in localStorage
       localStorage.setItem("authTokenTeach", data.authToken);

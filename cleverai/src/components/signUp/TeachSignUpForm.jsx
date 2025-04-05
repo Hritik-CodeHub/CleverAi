@@ -33,9 +33,7 @@ export default function TeachSignUpForm() {
     setTimeout(() => {
       navigate("/teacherdash")
     }, 3000);
-    // dispatch(login(data.authToken));
-    
-    
+  
     // Handle success (e.g., store token, redirect, etc.)
     } catch (err) {
     toast.error("Oop's something went wrong!")

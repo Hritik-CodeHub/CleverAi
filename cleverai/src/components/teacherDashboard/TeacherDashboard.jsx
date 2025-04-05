@@ -1,28 +1,28 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect, useCallback } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import "./TeacherDashboard.css";
-import { useDispatch } from "react-redux";
-import { setClassId } from "../../reduxFeatures/info/ClassInfoSlice"; // Import action
 import Navbar from "../navbar/Navbar";
+import { toast } from "react-toastify";
+
 const TeacherDashboard = () => {
   const [classes, setClasses] = useState([]);
   const [newClass, setNewClass] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [creatingClass, setCreatingClass] = useState(false);
   const navigate = useNavigate();
-  const dispatch = useDispatch(); // Use Redux dispatch
+
   const authToken = localStorage.getItem("authTokenTeach");
-  const isTeach = localStorage.getItem("isTeach");
-  console.log(authToken);
-  // Prevents unauthorized access 
+  const isTeach = JSON.parse(localStorage.getItem("isTeach") || "false");
+
   useEffect(() => {
-      if (!isTeach) {
-        navigate("/login");
-      }
-    }, [isTeach, navigate]);
-  
-  // featch all classes
-  const [error, setError] = useState(null);
-  const fetchClasses = async () => {
-    setError(null);
+    if (!isTeach) {
+      navigate("/login");
+    }
+  }, [isTeach, navigate]);
+
+  // Fetch all classes
+  const fetchClasses = useCallback(async () => {
+    setLoading(true);
     try {
       const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/tec/allExstClasses`, {
         method: "GET",
@@ -39,72 +39,106 @@ const TeacherDashboard = () => {
       const data = await response.json();
       setClasses(data.allClasses);
     } catch (err) {
-      setError(err.message);
+      toast.error(err.message);
+    } finally {
+      setLoading(false);
     }
-  };
+  }, [authToken]);
 
   useEffect(() => {
     fetchClasses();
-  },[]);
+  }, [fetchClasses]);
 
-  // Create new class
+  // Create a new class
   const handleCreateClass = async () => {
-    if (newClass.trim()) {
-      try {
-        const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/tec/createClass`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "auth-token": authToken,
-          },
-          body: JSON.stringify({ className : newClass }),
-        });
-        if (!response.ok) {
-          throw new Error("Failed to create class");
-        }
-        const newClassResponse = await response.json();
-        setClasses((prevClasses) => [...prevClasses, newClassResponse]); // Add the new class to the state
-        fetchClasses();
-        setNewClass(""); // Clear the input after creation
-      } catch (err) {
-        setError(err.message);
+    if (!newClass.trim()) {
+      toast.warn("Classroom name cannot be empty!");
+      return;
+    }
+
+    setCreatingClass(true);
+    try {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/tec/createClass`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": authToken,
+        },
+        body: JSON.stringify({ className: newClass }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to create class");
       }
+
+      const newClassResponse = await response.json();
+      setClasses((prevClasses) => [...prevClasses, newClassResponse]);
+      setNewClass(""); 
+      fetchClasses();
+    } catch (err) {
+      toast.error(err.message);
+    } finally {
+      setCreatingClass(false);
     }
   };
 
   return (
-     <>
-      <Navbar /> 
-      <div className="dashboard-container">
+    <>
+      <Navbar />
+      <div className="teacher-dashboard">
         <h2 className="dashboard-title">Teacher Dashboard</h2>
+        <h2 className="title">
+          <span className="header-span">All Classes</span>
+        </h2>
+
         <div className="dashboard-content">
-          <div>
-            <ul className="class-list">
-            <div className="class-creation class-item ">
+          <div className="class-list">
+            {/* Create Class */}
+            <div className="class-creation-card">
               <input
                 type="text"
                 placeholder="Enter Classroom Name"
                 value={newClass}
                 onChange={(e) => setNewClass(e.target.value)}
                 className="class-input"
+                disabled={creatingClass}
               />
-              <button className="create-class-button" onClick={handleCreateClass}>
-                Create New Class
+              <button
+                className="create-class-button"
+                onClick={handleCreateClass}
+                disabled={creatingClass}
+              >
+                {creatingClass ? "Creating..." : "Create New Class"}
               </button>
             </div>
-          {/* All Existing classes */}
-            {classes.map((cls,index) => (
-              <li key={index} className="class-item"
-                onClick={() =>{dispatch(setClassId(cls._id));
-                navigate(`/class/${cls.name}`)}}>
-              {cls.name}
-              </li>
-            ))}
-          </ul>
+
+            {/* Loading Indicator */}
+            {loading ? (
+              <p>Loading classes...</p>
+            ) : classes.length > 0 ? (
+              classes.map((cls,i) => (
+                <Link to={`/teacher/${cls.name}/${cls._id}`} key={cls._id || i} >
+                  <div  className="classes-card">
+                <h3 className="classname">{cls.name}</h3>
+                <p className="class-teacher">
+                  <strong>Teacher:</strong> {cls.teacher}
+                </p>
+                <p className="classes-students">
+                  <strong>Students:</strong> {cls.students.length}
+                </p>
+                <p className="classes-papers">
+                  <strong>Papers:</strong> {cls.papers.length}
+                </p>
+              </div></Link>
+              ))
+            ) : (
+              <p>No classes found. Create one above.</p>
+            )}
           </div>
         </div>
       </div>
-  </>);
-  };
+    </>
+  );
+};
 
 export default TeacherDashboard;
