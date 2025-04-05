@@ -9,7 +9,7 @@
   align-items: center;
   text-align: center;
   color: white;
-  background-image: url("./src/assets/backgroundImg2.png");
+  background-image: url("/backgroundImg2.png");
   background-size: cover;
   background-position: center;
   height: 100vh;

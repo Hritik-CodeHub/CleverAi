@@ -25,7 +25,7 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="logo">
-        <img src="/public/logo3.0.png" alt="CleverAi Logo" className="logo-img" />
+        <img src="/logo3.0.png" alt="CleverAi Logo" className="logo-img" />
         <h3>CleverAi</h3>
       </div>
 
