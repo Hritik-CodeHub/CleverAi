@@ -79,7 +79,7 @@ export default function AIAssistantBenefits() {
           </ul>
         </div>
         <div style={{ flex: 1, textAlign: "center" }}>
-          <img src="./src/assets/aiImg.webp" alt="How it works" style={{ maxWidth: "100%", borderRadius: "8px" }} />
+          <img src="/aiImg.webp" alt="How it works" style={{ maxWidth: "100%", borderRadius: "8px" }} />
         </div>
       </div>
       
