@@ -5,6 +5,11 @@
   padding: 1rem;
 }
 
+.resp-title{
+  font-size: 30px;
+  text-align: center;
+}
+
 .paper-card {
   overflow-wrap: break-word;
   background: #ffffff;

@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import './AllClasses.css';  // Importing the external CSS
+import './AllClasses.css';
 import Navbar from "../../navbar/Navbar";
 import { toast } from "react-toastify";
+
 export default function AllClasses() {
   const [classes, setClasses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [refresh, setRefresh] = useState(false); //  added refresh state
+
+  const authToken = localStorage.getItem("authToken");
 
   useEffect(() => {
     const fetchClasses = async () => {
@@ -34,7 +38,6 @@ export default function AllClasses() {
         }
 
         setClasses(data.classes);
-       
       } catch (err) {
         setError(err.message);
       } finally {
@@ -43,8 +46,7 @@ export default function AllClasses() {
     };
 
     fetchClasses();
-  }, []);
-  const authToken = localStorage.getItem("authToken");
+  }, [refresh]); //  run useEffect again when refresh changes
 
   const handleJoinClass = async (classId) => {
     try {
@@ -60,7 +62,8 @@ export default function AllClasses() {
       const data = await response.json();
 
       if (response.ok) {
-        toast.success("You Succeffully Join the class")
+        toast.success("You successfully joined the class");
+        setRefresh(prev => !prev); //  toggle refresh to trigger re-fetch
       } else {
         alert(`Error: ${data.message}`);
       }
@@ -70,38 +73,38 @@ export default function AllClasses() {
     }
   };
 
+  return (
+    <>
+      <Navbar />
+      <div className="all-classes-container">
+        <h2 className="title">
+          <span className="header-span">All Classes</span>
+        </h2>
 
+        {loading && <p className="loading-text">Loading classes...</p>}
+        {error && <p className="error-text">{error}</p>}
+        {classes.length === 0 && !loading && !error && (
+          <p className="no-classes-text">No classes available.</p>
+        )}
 
-  return (<>
-    <Navbar/>
-    <div className="all-classes-container">
-      <h2 className="title">
-        <span className="header-span">All Classes</span>
-      </h2>
-
-      {loading && <p className="loading-text">Loading classes...</p>}
-
-      {error && <p className="error-text">{error}</p>}
-
-      {classes.length === 0 && !loading && !error && (
-        <p className="no-classes-text">No classes available.</p>
-      )}
-
-      <div className="classes-grid all-classes">
-        {classes.map((classItem) => (
-         <div key={classItem._id}>
-            <div  className="class-card">
-              <h3 className="class-name">{classItem.name}</h3>
-              <p className="class-teacher">Teacher ID: {classItem.teacher}</p>
-              <p className="class-students">Total Students: {classItem.students.length}</p>
-              <p className="class-date">
-                Created At: {new Date(classItem.createdAt).toLocaleDateString()}
-              </p>
+        <div className="classes-grid all-classes">
+          {classes.map((classItem) => (
+            <div key={classItem._id}>
+              <div className="class-card">
+                <h3 className="class-name">{classItem.name}</h3>
+                <p className="class-teacher">Teacher ID: {classItem.teacher}</p>
+                <p className="class-students">Total Students: {classItem.students.length}</p>
+                <p className="class-date">
+                  Created At: {new Date(classItem.createdAt).toLocaleDateString()}
+                </p>
+              </div>
+              <button className="joinbtn" onClick={() => handleJoinClass(classItem._id)}>
+                Join Class
+              </button>
             </div>
-          <button className="joinbtn"onClick={() => handleJoinClass(classItem._id)}>Join Class</button>
-         </div>
-        ))}
+          ))}
+        </div>
       </div>
-    </div>
-    </>);
+    </>
+  );
 }

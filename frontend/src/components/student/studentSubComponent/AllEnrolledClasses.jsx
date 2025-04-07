@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./AllEnrolledClasses.css"; // Import CSS file
 import { Link } from "react-router-dom";
+import Navbar from "../../navbar/Navbar";
 function AllEnrolledClasses() {
   const [classes, setClasses] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -33,7 +34,8 @@ function AllEnrolledClasses() {
 
     fetchEnrolledClasses();
   }, []);
-  return (
+  return (<>
+    <Navbar/>
     <div className="allenrolledclasses-container">
       <h2 className="allenrolledclasses-h2">My Enrolled Classes</h2>
 
@@ -62,7 +64,7 @@ function AllEnrolledClasses() {
         )}
       </div>
     </div>
-  );
+  </>);
 }
 
 export default AllEnrolledClasses;

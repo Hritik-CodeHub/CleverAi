@@ -3,7 +3,7 @@ import { useNavigate  } from "react-router-dom";
 import { useState } from "react";
 import "./LoginForm.css";
 import { toast } from 'react-toastify';
-
+import Loading from "../Loading/Loading";
 export default function StudentForm() {
 
   const [email, setEmail] = useState("");
@@ -38,29 +38,28 @@ export default function StudentForm() {
       localStorage.setItem("authToken", data.authToken);
       localStorage.setItem("isAuthenticated", true);
       
-      // Handle success (e.g., store token, redirect, etc.)
     } catch (err) {
-      toast.error("Oop's something went wrong!")
       setError(err.message);
+      toast.error(error);
     } finally {
       setLoading(false);
     }
   };
 
-    return (
+    return (<>
+      {loading && <Loading />}
       <div>
         <h2 style={{ textAlign: "center" }}>Student Login</h2>
         <form onSubmit={handleLogin}>
         <input type="email" onChange={(e) => setEmail(e.target.value)}  placeholder="Email" className="inputStyle" />
         <input onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Password" className="inputStyle" />
-        <button type="submit" className="buttonStyle">{
-      loading?("Loging..."):("Login")
-      }</button>
+        <button type="submit" className="buttonStyle">Login
+        </button>
         </form><div style={{color:"black", display:"flex", alignItems:"center",marginTop:"10px" }}>
           <p style={{marginRight:"5px"}}>Register Now</p>
           <Link className="link" to="/signup" >Sign Up</Link>
         </div>
       </div>
-    );
+    </>);
   }
   

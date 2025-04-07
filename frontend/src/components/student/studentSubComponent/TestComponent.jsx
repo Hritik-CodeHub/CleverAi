@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import AiResponse from "./AiResponse";
 import './TestComponent.css';
+import { toast } from "react-toastify";
 
 function TestComponent({ classId, paper, onBack }) {
   const [startPaper, setStartPaper] = useState(false);
@@ -61,7 +62,7 @@ function TestComponent({ classId, paper, onBack }) {
     const authToken = localStorage.getItem("authToken");
     if (!authToken) {
       setError("Authentication token is missing.");
-      alert("You have to log in.");
+      alert("You need to log in.");
       setLoading(false);
       return;
     }
@@ -89,10 +90,15 @@ function TestComponent({ classId, paper, onBack }) {
       if (response.ok) {
         setShowSuccess(true);
       } else {
-        setError("Failed to submit the paper.");
+          const errorMsg = "Failed to submit the paper.";
+          setError(errorMsg);
+          toast.error(errorMsg);
       }
     } catch (error) {
-      setError("Error submitting paper.");
+          console.error("Submission Error:", error);
+          const errMsg = "Network error. Please try again.";
+          setError(errMsg);
+          toast.error(errMsg);
     } finally {
       setLoading(false);
     }
@@ -102,7 +108,7 @@ function TestComponent({ classId, paper, onBack }) {
     return (
       <div className="test-component-container">
         <div className="confirmation-container">
-          <h1 className="confirmation-heading">Are you sure you want to start the paper?</h1>
+          <h1 className="confirmation-heading">Are you ready to start the paper?</h1>
           <button
             className="start-button"
             onClick={startCountdown}

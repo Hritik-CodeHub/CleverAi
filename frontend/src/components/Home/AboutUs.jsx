@@ -2,10 +2,9 @@ import React from "react";
 import "./homecss/About.css";
 
 const teamMembers = [
-  { name: "Prateek Maurya", role: "Software Engineer", img: "/prateekImg.png" },
-  { name: "Hritik Verma", role: "Software Engineer", img: "/hritikImg.jpg" },
-  { name: "Aman Ali", role: "Software Engineer", img: "/amanImg.jpg" },
-  { name: "Prem Vishwakarma", role: "Software Engineer", img: "/premImg.jpg" },
+  { name: "Prateek Maurya", role: "MERN Stack Developer", img: "/prateekImg.png" },
+  { name: "Hritik Verma", role: "MERN Stack Developer", img: "/hritikImg.jpg" },
+  { name: "Aman Ali", role: "Frontend Developer", img: "/amanImg.jpg" },
 ];
 
 export default function AboutUs() {

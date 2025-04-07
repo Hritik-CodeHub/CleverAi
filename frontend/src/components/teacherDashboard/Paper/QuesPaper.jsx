@@ -47,8 +47,7 @@ const QuesPaper = () => {
     fetchPaper();
   }, []);
 
-  return (
-    <>
+  return (<>
       <Navbar/> 
       <div className="question-paper-container">
         <h2>Question Paper</h2>

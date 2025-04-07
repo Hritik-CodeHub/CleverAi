@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "./LoginForm.css";
 import "react-toastify/dist/ReactToastify.css";
+import Loading from "../Loading/Loading";
 
 export default function TeacherForm() {
   const navigate = useNavigate();
@@ -41,14 +42,15 @@ export default function TeacherForm() {
       localStorage.setItem("isTeach", "true"); // Should be stored as a string
       
     } catch (err) {
-      toast.error("Oop's something went wrong!");
       setError(err.message);
+      toast.error(error);
     } finally {
       setLoading(false);
     }
   };
 
-  return (
+  return (<>
+    {loading && <Loading />}
     <div>
       <h2 style={{ textAlign: "center" }}>Teacher Login</h2>
       <form onSubmit={handleLogin}>
@@ -67,7 +69,7 @@ export default function TeacherForm() {
           required
         />
         <button type="submit" className="buttonStyle" disabled={loading}>
-          {loading ? "Logging in..." : "Login"}
+          Login
         </button>
       </form>
       <div style={{ color: "black", display: "flex", alignItems: "center", marginTop: "10px" }}>
@@ -75,5 +77,5 @@ export default function TeacherForm() {
         <Link className="link" to="/signup">Sign Up</Link>
       </div>
     </div>
-  );
+  </>);
 }

@@ -34,7 +34,6 @@ const Navbar = () => {
           <div className={`nav-links ${isMenuOpen ? "active" : ""}`}>
             <ul>
               <li><Link to="/" className="active">Home</Link></li>
-              <li><Link to="/features">Features</Link></li>
               <li><ScrollLink to="about-us" smooth={true} duration={1000}>About Us</ScrollLink></li>
             </ul>
             <button className="signup-btn mobile" onClick={() => navigate("/login")}>

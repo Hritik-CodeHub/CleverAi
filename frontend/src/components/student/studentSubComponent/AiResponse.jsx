@@ -7,6 +7,8 @@ function AiResponse({ aiResponse, onCancel }) {
     <div className="ai-response-overlay">
       <div className="ai-response-container">
         <h2 className="ai-response-title">Paper Submitted Successfully!</h2>
+        <p className='ai-score'>Score :{aiResponse.score}</p>
+        <hr style={{marginBottom: "20px",color:"gray"}}/>
 
         <div className="ai-response-details">
           {aiResponse?.responses.map((e, idx) => (

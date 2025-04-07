@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./AllAttemptedPaper.css";
+import Navbar from "../../navbar/Navbar";
 
 function AllAttemptedPaper() {
   const [allAttemptedPapers, setAllAttemptedPapers] = useState([]);
@@ -44,7 +45,8 @@ function AllAttemptedPaper() {
     fetchAttemptedPapers();
   }, []);
   
-  return (
+  return (<>
+    <Navbar/>
     <div>
       <h2>All Attempted Papers</h2>
 
@@ -74,8 +76,9 @@ function AllAttemptedPaper() {
       {selectedPaper && (
         <div className="modal-overlay" onClick={() => setSelectedPaper(null)}>
         <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-          <h3>Responses:</h3>
-          <p>Score :{selectedPaper.score}</p>
+          <h3 className="resp-title">Responses:</h3>
+          <p className="ai-score">Score :{selectedPaper.score}</p>
+          <hr />
           <ul className="response-list">
             {selectedPaper.responses.map((response) => (
               <li key={response._id} className="response-item">
@@ -91,7 +94,7 @@ function AllAttemptedPaper() {
       
       )}
     </div>
-  );
+  </>);
 }
 
 export default AllAttemptedPaper;

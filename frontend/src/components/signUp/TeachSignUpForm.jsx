@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import "./SignUpForm.css";
+import Loading from "../Loading/Loading";
 export default function TeachSignUpForm() {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
@@ -34,31 +35,34 @@ export default function TeachSignUpForm() {
       navigate("/teacherdash")
     }, 3000);
   
+    // Storing the data in localStorage
+    localStorage.setItem("authTokenTeach", data.authToken);
+    localStorage.setItem("isTeach", "true"); // Should be stored as a string
+    
     // Handle success (e.g., store token, redirect, etc.)
     } catch (err) {
-    toast.error("Oop's something went wrong!")
-    setError(err.message);
+      setError(err.message);
+      toast.error(error);
     } finally {
     setLoading(false);
     }
 };
 
 
-    return (
+    return (<>
+      {loading && <Loading />}
       <div>
         <h2 style={{ textAlign: "center" }}>Teacher SignUp</h2>
         <form onSubmit={handleSignup}>
         <input type="name"  onChange={(e) => setName(e.target.value)}  placeholder="Name" className="inputStyle" />
         <input type="email"  onChange={(e) => setEmail(e.target.value)} placeholder="Email" className="inputStyle" />
         <input type="password"  onChange={(e) => setPassword(e.target.value)} placeholder="Password" className="inputStyle" />
-        <button type="submit" className="buttonStyle">{
-        loading ? ("Loading..."):("SignUp")
-        }</button></form>
+        <button type="submit" className="buttonStyle">SignUp</button></form>
         <div style={{color:"black", display:"flex", alignItems:"center",marginTop:"10px" }}>
           <p style={{marginRight:"5px"}}>Already have account ?</p>
           <Link className="link"to="/login" >Log in</Link>
         </div>
       </div>
-    );
+  </>);
   }
   
