@@ -11,6 +11,7 @@ const BenefitCard = ({ icon: Icon, title, description }) => {
     width: "100%",
     maxWidth: "400px",
     margin: "0 auto" };
+
     return (
         <div style={styles}>
           <Icon style={{ fontSize: "50px", color: "#007bff", marginBottom: "15px" }} />
@@ -21,6 +22,25 @@ const BenefitCard = ({ icon: Icon, title, description }) => {
     };
 
 export default function AIAssistantBenefits() {
+  let WorksSec={ 
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    maxWidth: "80%",
+    margin: "0 auto",
+    border: "1px solid #ddd",
+    borderRadius: "8px",
+    padding: "30px",
+    boxShadow: "2px 2px 10px rgba(0,0,0,0.1)" }
+   let whychooseus={ 
+    maxWidth: "80%", 
+    margin: "40px auto", 
+    textAlign: "center", 
+    border: "1px solid #ddd", 
+    borderRadius: "8px", 
+    padding: "30px", 
+    boxShadow: "2px 2px 10px rgba(0,0,0,0.1)"
+  }
   const benefits = [
     { icon: FaRobot, title: "Automated Grading", description: "Our AI instantly evaluates objective, subjective, and even handwritten assignments." },
     { icon: FaUserGraduate, title: "Personalized Feedback", description: "Get AI-driven insights tailored to each student's performance and needs." },
@@ -28,7 +48,7 @@ export default function AIAssistantBenefits() {
     { icon: FaCode, title: "AI-Powered Code Evaluation", description: "Automatically assess programming assignments, check efficiency, and suggest improvements." },
     { icon: FaLightbulb, title: "Smart Recommendations", description: "Students receive learning material suggestions based on their strengths and weaknesses." },
     { icon: FaStar, title: "AI-Powered Assistance", description: "Integrates Google's Gemini API for instant feedback, personalized recommendations, and enhanced user interactions." }
-];
+  ];
 
   const howItWorks = {
     title: "How It Works?",
@@ -68,7 +88,7 @@ export default function AIAssistantBenefits() {
       </div>
       
       {/* How It Works Section */}
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", maxWidth: "80%", margin: "0 auto", border: "1px solid #ddd", borderRadius: "8px", padding: "30px", boxShadow: "2px 2px 10px rgba(0,0,0,0.1)" }}>
+      <div style={WorksSec}>
         <div style={{ flex: 1 }}>
           <h2>{howItWorks.title}</h2>
           <p style={{ color: "#666", marginTop: "10px" }}>{howItWorks.description}</p>
@@ -78,13 +98,13 @@ export default function AIAssistantBenefits() {
             ))}
           </ul>
         </div>
-        <div style={{ flex: 1, textAlign: "center" }}>
+        <div style={{ flex: 1}}>
           <img src="/aiImg.webp" alt="How it works" style={{ maxWidth: "100%", borderRadius: "8px" }} />
         </div>
       </div>
       
       {/* Why Choose Us Section */}
-      <div style={{ maxWidth: "80%", margin: "40px auto", textAlign: "center", border: "1px solid #ddd", borderRadius: "8px", padding: "30px", boxShadow: "2px 2px 10px rgba(0,0,0,0.1)" }}>
+      <div style={whychooseus}>
         <h2>{whyChooseUs.title}</h2>
         <p style={{ color: "#666", marginTop: "10px" }}>{whyChooseUs.description}</p>
         <ul style={{ marginTop: "20px", fontSize: "18px", color: "#555", listStyleType: "none", padding: 0 }}>

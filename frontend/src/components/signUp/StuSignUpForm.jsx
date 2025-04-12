@@ -55,7 +55,7 @@ export default function StuSignUpForm() {
       <input type="password"  onChange={(e) => setPassword(e.target.value)} placeholder="Password" className="inputStyle" />
       <button type="submit" className="buttonStyle">SignUp</button>
       </form>
-      <div style={{color:"black", display:"flex", alignItems:"center",marginTop:"10px" }}>
+      <div style={{color:"black", display:"flex", justifyContent:"center",marginTop:"12px" }}>
         <p style={{marginRight:"5px"}}>Already have account ?</p>
         <Link className="link" to="/login" >Log in</Link>
       </div>

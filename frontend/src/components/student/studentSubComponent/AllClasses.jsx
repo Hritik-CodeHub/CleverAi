@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import './AllClasses.css';
 import Navbar from "../../navbar/Navbar";
 import { toast } from "react-toastify";
-
+import Loading from "../../Loading/Loading";
 export default function AllClasses() {
   const [classes, setClasses] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -50,6 +50,7 @@ export default function AllClasses() {
 
   const handleJoinClass = async (classId) => {
     try {
+      setLoading(true);
       const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/st/joinClass`, {
         method: "PUT",
         headers: {
@@ -70,18 +71,20 @@ export default function AllClasses() {
     } catch (error) {
       console.error("Error joining class:", error);
       alert("Failed to join class. Please try again later.");
+    }finally {
+      setLoading(false);
     }
   };
 
   return (
     <>
       <Navbar />
+      {loading && <Loading />}
       <div className="all-classes-container">
         <h2 className="title">
           <span className="header-span">All Classes</span>
         </h2>
 
-        {loading && <p className="loading-text">Loading classes...</p>}
         {error && <p className="error-text">{error}</p>}
         {classes.length === 0 && !loading && !error && (
           <p className="no-classes-text">No classes available.</p>
@@ -89,7 +92,7 @@ export default function AllClasses() {
 
         <div className="classes-grid all-classes">
           {classes.map((classItem) => (
-            <div key={classItem._id}>
+            <div key={classItem._id} className="card-cont">
               <div className="class-card">
                 <h3 className="class-name">{classItem.name}</h3>
                 <p className="class-teacher">Teacher ID: {classItem.teacher}</p>
@@ -98,7 +101,7 @@ export default function AllClasses() {
                   Created At: {new Date(classItem.createdAt).toLocaleDateString()}
                 </p>
               </div>
-              <button className="joinbtn" onClick={() => handleJoinClass(classItem._id)}>
+              <button className="joinbtn" onClick={() => handleJoinClass(classItem._id)} >
                 Join Class
               </button>
             </div>

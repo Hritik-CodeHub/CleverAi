@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import AiResponse from "./AiResponse";
 import './TestComponent.css';
 import { toast } from "react-toastify";
-
+import Loading from "../../Loading/Loading";
 function TestComponent({ classId, paper, onBack }) {
   const [startPaper, setStartPaper] = useState(false);
   const [error, setError] = useState(null);
@@ -126,7 +126,8 @@ function TestComponent({ classId, paper, onBack }) {
     );
   }
 
-  return (
+  return (<>
+    {loading && <Loading />}
     <div className="test-paper-container">
       {error && <p className="error-message">{error}</p>}
 
@@ -144,7 +145,7 @@ function TestComponent({ classId, paper, onBack }) {
       <div className="questions-container">
         {paper?.questions?.map((ques, idx) => (
           <div key={ques.id} className="question-item">
-            <p className="question-text">{ques.text}</p>
+            <p className="question-text">Q {idx+1}: {ques.text}</p>
             <input
               type="text"
               placeholder="Type Your Answer"
@@ -184,7 +185,7 @@ function TestComponent({ classId, paper, onBack }) {
         </div>
       )}
     </div>
-  );
+  </>);
 }
 
 export default TestComponent;

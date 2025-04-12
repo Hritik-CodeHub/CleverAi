@@ -3,6 +3,7 @@ import axios from "axios";
 import "./AllEnrolledClasses.css"; // Import CSS file
 import { Link } from "react-router-dom";
 import Navbar from "../../navbar/Navbar";
+import Loading from "../../Loading/Loading";
 function AllEnrolledClasses() {
   const [classes, setClasses] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -36,10 +37,10 @@ function AllEnrolledClasses() {
   }, []);
   return (<>
     <Navbar/>
+    {loading && <Loading />}
     <div className="allenrolledclasses-container">
       <h2 className="allenrolledclasses-h2">My Enrolled Classes</h2>
 
-      {loading && <p className="allenrolledclasses-loading">Loading...</p>}
       {error && <p className="allenrolledclasses-error">{error}</p>}
 
       <div className="allenrolledclasses-list">

@@ -72,7 +72,7 @@ export default function TeacherForm() {
           Login
         </button>
       </form>
-      <div style={{ color: "black", display: "flex", alignItems: "center", marginTop: "10px" }}>
+      <div style={{ color: "black", display: "flex", justifyContent: "center", marginTop: "12px" }}>
         <p style={{ marginRight: "5px" }}>Register Now</p>
         <Link className="link" to="/signup">Sign Up</Link>
       </div>

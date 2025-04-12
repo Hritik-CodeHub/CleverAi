@@ -4,7 +4,7 @@ import axios from "axios";
 import TestComponent from "./TestComponent";
 import './AllPaper.css';  // Importing the external CSS
 import Navbar from "../../navbar/Navbar";
-
+import Loading from "../../Loading/Loading";
 function AllPaper() {
   const { classId } = useParams();
   const [papers, setPapers] = useState([]);
@@ -62,12 +62,12 @@ function AllPaper() {
 
   return (<>
     <Navbar/>
+    {loading && <Loading />}
     <div className="all-papers-container">
       <div className="papers-content">
         <h2 className="title">
           {selectedPaper ? selectedPaper.title : "All Papers"}
         </h2> 
-        {loading && <p className="loading-text">Loading...</p>}
         {error && <p className="error-text">{error}</p>}
 
         {!loading && !error && papers.length === 0 && (
