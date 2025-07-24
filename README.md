@@ -13,8 +13,6 @@ We set out to solve a real-world problem: overburdened teachers and the lack of 
 ## 🛠 Tech Stack:
 React.js • Node.js • Express.js • MongoDB • JavaScript • HTML • CSS • Gemini API • Redux toolkit 
 
-## Backend Code:
-https://github.com/Hritik-CodeHub/CleverApi
 
 ## 🔗 Live Demo
 Visit CleverAi ( https://clever-ai-two.vercel.app/ )
