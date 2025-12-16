@@ -227,7 +227,7 @@ const attemptPaper = async (req, res) => {
 
       //communicating with GIMINI
       const genAI = new GoogleGenerativeAI(process.env.GIMINI_API_KEY);
-      const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+      const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
       const prompt = `${promptText} Evaluate the user's answers to the questions. For each response, provide feedback on how it can be improved in one line. After evaluating all responses, give a final score out of 100 based on the overall quality. Return the feedback only in the following format: 'response1 $ response2 $ response3 $ score'. Do not mention the question numbers, response number, score.`;
       // const prompt = `${promptText} evaluate each user answere with its answere and return how to improve user his answere for each quesion within 1 line like this response1 $ response2 $ response3 without mentioning the quesiton number at last give score out of 100`;
