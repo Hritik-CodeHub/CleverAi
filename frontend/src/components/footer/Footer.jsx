@@ -35,7 +35,7 @@ export default function Footer() {
         <FaLinkedinIn className="icon" />
         <FaYoutube className="icon" />
       </div>
-      <div className="footer-text">© 2025 NewsNexus. All Rights Reserved.</div>
+      <div className="footer-text">© 2025 CleverAi. All Rights Reserved.</div>
     </footer>
   );
 }

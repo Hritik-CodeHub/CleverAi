@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
-import classInfoReducer from '../reduxFeatures/info/ClassInfoSlice';
-import questionPaperReducer from '../reduxFeatures/info/questionPaperSlice';
+import classInfoReducer from './slices/ClassInfoSlice';
+import questionPaperReducer from './slices/questionPaperSlice';
 
 export const store = configureStore({
   reducer: {
