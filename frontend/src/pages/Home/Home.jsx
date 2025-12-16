@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./Home.css";
 import Navbar from '../../components/navbar/Navbar'
-import KeyBenefits from "../../components/home/KeyBenefits";
+import KeyBenefits from "../../components/common/KeyBenefits";
 import Footer from "../../components/footer/Footer";
 
 
